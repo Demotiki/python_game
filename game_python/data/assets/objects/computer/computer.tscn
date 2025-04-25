@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2400fy8h2k26"]
+
+[ext_resource type="Texture2D" uid="uid://b4yno868n2gae" path="res://data/assets/objects/computer/computer.png" id="1_mnr7k"]
+[ext_resource type="Script" uid="uid://boti3qx1dndi3" path="res://data/assets/objects/computer/computer.gd" id="2_pxskg"]
+[ext_resource type="FontFile" uid="uid://0lr2tv6qa7cc" path="res://data/assets/text/code_editor/CascadiaMono.ttf" id="3_wiida"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mgfg"]
+size = Vector2(28, 21)
+
+[node name="zone_pc" type="Area2D"]
+collision_mask = 4
+script = ExtResource("2_pxskg")
+
+[node name="Computer" type="Sprite2D" parent="."]
+texture = ExtResource("1_mnr7k")
+
+[node name="collision_pc" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_5mgfg")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -5.0
+offset_top = -23.0
+offset_right = 66.0
+scale = Vector2(1.10225, 1.25996)
+theme_override_fonts/font = ExtResource("3_wiida")
+theme_override_font_sizes/font_size = 9
+text = "Е"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgh5rtwohnp1u"]
+
+[ext_resource type="Script" uid="uid://ds5bvk7i3ud6r" path="res://data/scipts/menu.gd" id="1_v8bmp"]
+[ext_resource type="PackedScene" uid="uid://drp1tkxiaoyb8" path="res://data/scn/parallax_background.tscn" id="2_iq7r8"]
+[ext_resource type="FontFile" uid="uid://cx5kmy8sj51pp" path="res://data/assets/text/fonts/alagard-12px-unicode (Rus)/alagard-12px-unicode.ttf" id="3_ypaey"]
+
+[node name="MENU_START" type="Node2D"]
+script = ExtResource("1_v8bmp")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_iq7r8")]
+
+[node name="START" type="Button" parent="."]
+offset_left = 361.0
+offset_top = 182.0
+offset_right = 661.0
+offset_bottom = 283.0
+theme_override_colors/font_color = Color(0.988174, 0.291392, 0.571465, 1)
+theme_override_fonts/font = ExtResource("3_ypaey")
+theme_override_font_sizes/font_size = 44
+text = "НАЧАТЬ"
+
+[node name="QUIT" type="Button" parent="."]
+offset_left = 362.0
+offset_top = 325.0
+offset_right = 662.0
+offset_bottom = 426.0
+theme_override_colors/font_color = Color(0.988174, 0.291392, 0.571465, 1)
+theme_override_fonts/font = ExtResource("3_ypaey")
+theme_override_font_sizes/font_size = 44
+text = "ВЫЙТИ"
+
+[connection signal="pressed" from="START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="QUIT" to="." method="_on_quit_pressed"]

@@ -1,0 +1,19 @@
+[gd_resource type="CodeHighlighter" load_steps=2 format=3 uid="uid://bq7w6n6ljd1ji"]
+
+[sub_resource type="GDScript" id="GDScript_fg7cw"]
+script/source = "extends CodeHighlighter
+
+func _init() -> void:
+	
+		# Ключевые слова Python (подсвечиваются цветом)
+	var keywords = [\"def\", \"class\", \"if\", \"else\", \"for\", \"while\", \"import\"]
+	for keyword in keywords:
+		add_keyword_color(keyword, Color(\"#569CD6\"))
+	# Регионы (например, комментарии)
+	add_color_region(\"#\", \"\", Color(\"#6A9955\"), false)  # Комментарии Python
+	
+"
+
+[resource]
+resource_name = "Python_redact"
+script = SubResource("GDScript_fg7cw")

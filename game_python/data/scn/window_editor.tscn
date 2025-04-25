@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdya7814r06wg"]
+
+[ext_resource type="Script" uid="uid://c1sniwkjgjj4h" path="res://data/scipts/code_edit.gd" id="1_6pwg8"]
+[ext_resource type="CodeHighlighter" uid="uid://bq7w6n6ljd1ji" path="res://data/assets/text/code_editor/new_code_highlighter.tres" id="3_o3uxm"]
+[ext_resource type="FontFile" uid="uid://0lr2tv6qa7cc" path="res://data/assets/text/code_editor/CascadiaMono.ttf" id="3_ywb4e"]
+
+[sub_resource type="Gradient" id="Gradient_o3uxm"]
+offsets = PackedFloat32Array(0.378641, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ywb4e"]
+gradient = SubResource("Gradient_o3uxm")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[node name="Window" type="Window"]
+position = Vector2i(22, 36)
+size = Vector2i(300, 500)
+script = ExtResource("1_6pwg8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(62, 21)
+scale = Vector2(299, 29.5)
+texture = SubResource("GradientTexture2D_ywb4e")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 56.0
+offset_bottom = 29.0
+theme_override_fonts/font = ExtResource("3_ywb4e")
+theme_override_font_sizes/font_size = 14
+text = "SAVE"
+
+[node name="CodeEdit" type="CodeEdit" parent="."]
+offset_top = 28.0
+offset_right = 300.0
+offset_bottom = 500.0
+theme_override_fonts/font = ExtResource("3_ywb4e")
+syntax_highlighter = ExtResource("3_o3uxm")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

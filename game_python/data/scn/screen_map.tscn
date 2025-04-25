@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://4nuy7xs046uy"]
+
+[ext_resource type="Script" uid="uid://c5qfnojnhbnvt" path="res://data/scipts/screen_map.gd" id="1_w024d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w024d"]
+size = Vector2(362.425, 174.796)
+
+[node name="screen_map" type="Area2D"]
+collision_layer = 128
+collision_mask = 4
+script = ExtResource("1_w024d")
+
+[node name="area" type="CollisionShape2D" parent="."]
+modulate = Color(1, 1, 1, 0.301961)
+light_mask = 0
+visibility_layer = 128
+position = Vector2(-1.19209e-07, 5.96046e-08)
+scale = Vector2(0.982208, 0.67188)
+shape = SubResource("RectangleShape2D_w024d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
