@@ -1,0 +1,160 @@
+[gd_scene load_steps=23 format=3 uid="uid://cqiw3okxdnikp"]
+
+[ext_resource type="Texture2D" uid="uid://bjbg08fjqc44r" path="res://data/assets/loading/loading.png" id="1_jb3qy"]
+[ext_resource type="FontFile" uid="uid://caa8xnnxs32kv" path="res://data/assets/text/fonts/alagard-12px-unicode (Rus)/alagard-12px-unicode.otf" id="2_8jy4x"]
+
+[sub_resource type="Gradient" id="Gradient_8jy4x"]
+offsets = PackedFloat32Array(0.233766, 0.74026, 0.993506)
+colors = PackedColorArray(0, 0, 0, 1, 0.215902, 0.215902, 0.215902, 1, 0.233925, 0.233925, 0.233925, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uxxv2"]
+gradient = SubResource("Gradient_8jy4x")
+width = 1024
+height = 700
+fill_to = Vector2(1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v3f1"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvy1s"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig2j5"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gojiq"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81isi"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adjaj"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8gsl"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dr4p"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm8sg"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7nwq"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ph7w5"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alej8"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhqqh"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyugm"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3o3e"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0yu0"]
+atlas = ExtResource("1_jb3qy")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evxwf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v3f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvy1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig2j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gojiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81isi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adjaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8gsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dr4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm8sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7nwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ph7w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alej8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhqqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyugm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3o3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0yu0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1j5h7"]
+font = ExtResource("2_8jy4x")
+font_size = 105
+font_color = Color(0.607843, 0.6, 0.678431, 1)
+
+[node name="loading" type="CanvasLayer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(512, 350)
+texture = SubResource("GradientTexture2D_uxxv2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(512, 241)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_evxwf")
+autoplay = "default"
+frame_progress = 0.867276
+
+[node name="Label" type="Label" parent="."]
+offset_left = 283.0
+offset_top = 424.0
+offset_right = 760.0
+offset_bottom = 568.0
+text = "LOADING"
+label_settings = SubResource("LabelSettings_1j5h7")

@@ -19,11 +19,11 @@ func _open():
 func test():
 	var ans = ["18\r\n"]
 	var output = []
-
-	var cmd = "cmd.exe" if OS.get_name() == "Windows" else "sh"
-	var args = ["/C", "python", "test.py"] if OS.get_name() == "Windows" else ["-c", "python3 test.py"]
-	OS.execute(cmd, args, output, true)
 	
+	var cmd = "cmd.exe" if OS.get_name() == "Windows" else "sh"
+	var args = ["/C", "py", "test.py"] if OS.get_name() == "Windows" else ["-c", "py test.py"]
+	OS.execute(cmd, args, output, true)
+	print(output)
 	if output[0] == "Error": 
 		print("Error")
 	elif ans == output:

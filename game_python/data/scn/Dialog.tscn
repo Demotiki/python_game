@@ -1,0 +1,150 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqwqsg3hfnhhy"]
+
+[ext_resource type="Texture2D" uid="uid://be7srxlh3fkcq" path="res://data/assets/text/frame_for_text/frame.png" id="2_bnclw"]
+[ext_resource type="FontFile" uid="uid://0lr2tv6qa7cc" path="res://data/assets/text/code_editor/CascadiaMono.ttf" id="3_ris7t"]
+
+[sub_resource type="GDScript" id="GDScript_ns5p4"]
+script/source = "extends CanvasLayer
+
+
+@onready var text = $texts
+
+
+func _ready() -> void:
+	pass
+"
+
+[sub_resource type="ImageTexture" id="ImageTexture_ifise"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyyp5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmjjo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66wj8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.75, 0.75, 0.75, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkbc2"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0.973114, 0.867816, 0.857622, 0.109804)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21q65"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="Theme" id="Theme_4s5fb"]
+VScrollBar/icons/decrement = SubResource("ImageTexture_ifise")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_ifise")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_ifise")
+VScrollBar/icons/increment = SubResource("ImageTexture_ifise")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_ifise")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_ifise")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uyyp5")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_fmjjo")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_66wj8")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_bkbc2")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_21q65")
+
+[sub_resource type="LabelSettings" id="LabelSettings_uyyp5"]
+paragraph_spacing = 4.0
+font = ExtResource("3_ris7t")
+font_size = 21
+outline_size = 2
+shadow_size = 4
+shadow_color = Color(0.355314, 0.355314, 0.355314, 0)
+
+[node name="Dialog" type="CanvasLayer"]
+physics_interpolation_mode = 2
+layer = -1
+script = SubResource("GDScript_ns5p4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(510, 153)
+scale = Vector2(7.70006, 5.72258)
+texture = ExtResource("2_bnclw")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 59.0
+offset_top = 93.0
+offset_right = 967.0
+offset_bottom = 219.0
+scale = Vector2(0.99797, 0.974666)
+theme = SubResource("Theme_4s5fb")
+horizontal_scroll_mode = 0
+
+[node name="text" type="Label" parent="ScrollContainer"]
+texture_filter = 3
+custom_minimum_size = Vector2(900, 124)
+layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 14
+theme_override_fonts/font = ExtResource("3_ris7t")
+theme_override_font_sizes/font_size = 18
+text = "Привет путник это начало этой замечательной игры, повествующей о маленьком призраке компьютерного кода, который потерял свои воспоминания и теперь тебе страннник предстоит помочь этому маленькому призраку вренуть их, ведь он даже забыл как ходить, давай начнём с этого.
+
+
+д
+дд
+д
+д
+д
+
+д
+лдлд
+лд"
+label_settings = SubResource("LabelSettings_uyyp5")
+autowrap_mode = 3
+uppercase = true

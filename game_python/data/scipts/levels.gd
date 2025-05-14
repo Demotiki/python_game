@@ -2,6 +2,11 @@ extends Node2D
 
 var inter = 0
 
+func  _ready() -> void:
+	$loading.visible = 1
+	await get_tree().create_timer(3).timeout
+	$loading.visible = 0
+
 func _process(delta: float) -> void:
 	var window_scene = load("res://data/scn/window_editor.tscn")
 	var window_instance = window_scene.instantiate()

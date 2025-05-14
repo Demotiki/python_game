@@ -1,6 +1,6 @@
 [gd_scene load_steps=48 format=3 uid="uid://cc21od02nl6ca"]
 
-[ext_resource type="Script" uid="uid://cudi1oti3as8q" path="res://data/scipts/player.gd" id="1_mvcb2"]
+[ext_resource type="Script" uid="uid://ds0wl7m0ybbcs" path="res://data/scipts/player.gd" id="1_mvcb2"]
 [ext_resource type="Texture2D" uid="uid://d0qe83jwdd1fv" path="res://data/assets/player/satiro-Sheet v1.1.png" id="2_std4o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sop27"]
@@ -202,7 +202,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash",
-"speed": 30.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -359,7 +359,7 @@ one_way_collision_margin = 0.0
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, 0)
 sprite_frames = SubResource("SpriteFrames_oi1pl")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]

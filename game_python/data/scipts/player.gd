@@ -1,23 +1,33 @@
 extends CharacterBody2D
 	
-var SPEED = 200.0
-var DESH_SPEED = 300
+var MOVE_SPEED = 200.0
+var DESH_SPEED = 800
 var JUMP_VELOCITY = -300.0
 var gravity = 980
+
+var max_stamina = 4
 var stamina = 4
+
+var max_dash = 1
 var dash = 1
 var dash_nap = Vector2()
 
 
-@onready var anim = $Animations
+
+
 @onready var camera = $Camera2D
 @onready var fade_rect = $CanvasLayer/ColorRect
 
 #Состояния игрока
+@onready var anim = $Animations
 enum {
 	MOVE,
+	DASH,
+	JUMP,
+	GRABING,
+	DEATH,
 	CAMERA_MOVE,
-	DASH
+	DIALOG
 }
 var state = MOVE
 
@@ -26,107 +36,82 @@ func _ready():
 	var areas = get_tree().get_nodes_in_group("screen_maps")
 	for area in areas:
 		area.connect("get_area_screen", Callable(self, "_change_camera"))
+
+
 	
 	$".".visible = true
 
+
 func _physics_process(delta: float) -> void:
 	match state:
-		MOVE:
-			state_move(delta)
-		DASH:
-			state_dash()
-		CAMERA_MOVE:
-			pass
-
-	
-	if Input.is_action_just_pressed("dash") and dash:
-		dash -= 1 
-		state = DASH
-		dash_nap = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
-	
-					#anim.play("death")
-					#await anim.animation_finished
-					#get_tree().change_scene_to_file("res://data/scn/MENU_START.tscn")
-	move_and_slide() #Плвная анимация
-
-func state_move(delta):
-	if is_on_floor(): 
-		stamina = 4
-		dash = 1
-	
-	if not is_on_floor() and not (is_on_wall() and Input.is_action_pressed("grab")):
+		MOVE: state_move(delta)
+		JUMP: state_jump(delta)
+		DASH: state_dash(delta)
+		CAMERA_MOVE: state_camera()
+	#Гравитация
+	if not is_on_floor():
 		velocity.y += gravity * delta
-		if Input.is_action_pressed("down"): velocity.y += SPEED / 50
+		if velocity.y >= 0: anim.play("foal")
 		
-	if velocity.y > 0:
-		anim.play("foal")
-
-	if Input.is_action_just_pressed("jump") and is_on_floor() and \
-		not(is_on_wall() and Input.is_action_pressed("grab")) and stamina > 0:
-		stamina -= 1
-		velocity.y += JUMP_VELOCITY
-		anim.play("jump")
-	if is_on_wall() and Input.is_action_pressed("grab"):
-		if not anim.animation_finished:
-			anim.play("grab")
-		if velocity.y > 0: velocity.y = 0
-			
-		var dis = Input.get_axis("up", "down")
-		if dis and stamina > 0: 
-			velocity.y = SPEED / 4 * dis
-			stamina -= 0.02
-		else: velocity.y += gravity * delta
-		
-		if Input.is_action_just_pressed("jump") and stamina > 0:
-			stamina -= 1
-			velocity.y += JUMP_VELOCITY / 1.5
-			anim.play("jump")
-			var direction := Input.get_axis("left", "right")
-			if direction: velocity.x = direction * SPEED
+	if Input.is_action_just_pressed("jump") and is_on_floor(): state = JUMP
 	
-	else:
-		var direction := Input.get_axis("left", "right")
-		if direction:
-			velocity.x = direction * SPEED
-			if direction == 1: 
-				if velocity.y == 0:
-					anim.play("run")
-				anim.flip_h = false
-			else: 
-				if velocity.y == 0:
-					anim.play("run")
-				anim.flip_h = true
-		else:
-			if velocity.y == 0:
-				anim.play("idle")
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+	if Input.is_action_just_pressed("dash") and dash > 0:
+		state = DASH
 
-func state_dash():
-	anim.play("dash")
-	if dash_nap.y and dash_nap.x:
-		if dash_nap.y == -1: velocity.y = -1 * DESH_SPEED / 1.5
-		elif dash_nap.y == 1: velocity.y = DESH_SPEED / 1.5
-		if dash_nap.x == -1: velocity.x = -1 * DESH_SPEED
-		elif dash_nap.x == 1: velocity.x = DESH_SPEED
-	elif dash_nap.y:
-		if dash_nap.y == -1: velocity.y = -1 * DESH_SPEED / 1.5
-		elif dash_nap.y == 1: velocity.y = DESH_SPEED / 1.5
-	elif dash_nap.x:
-		if dash_nap.x == -1: velocity.x = -1 * DESH_SPEED
-		elif dash_nap.x == 1: velocity.x = DESH_SPEED
-		velocity.y = 0
-	else:
-		if anim.flip_h: velocity.x = -1 * DESH_SPEED
-		else: velocity.x = DESH_SPEED
-		velocity.y == 0
-	await anim.animation_finished
+	
+	move_and_slide()
+	
+func state_move(delta):
+	if is_on_floor():
+		stamina = max_stamina
+		dash = max_dash
+	#Передвижение влево и вправо
+	var direction := Input.get_axis("left", "right")
+	if direction: 
+		velocity.x = lerp(velocity.x, direction * MOVE_SPEED, 0.2)
+		if is_on_floor(): anim.play("run")
+	else:  velocity.x = lerp(velocity.x, 0.0, 0.15)
+	
+	#Направление анимации
+	if direction == 1: anim.flip_h = 0
+	elif direction == -1: anim.flip_h = 1
+	else: anim.play("idle")
+	
+
+func state_jump(delta):
+	#Прыжок
+	velocity.y = JUMP_VELOCITY
+	anim.play("jump")
+	state = MOVE
+	
+	
+func state_dash(delta):
+	if dash > 0:
+		dash -= 1
+		var direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+		if direction == Vector2(0, 0): velocity.x = DESH_SPEED * (-1 if anim.flip_h else 1)
+		else: velocity = direction * Vector2(DESH_SPEED, DESH_SPEED/2.5)
+		
+		anim.play("dash")
+		await get_tree().create_timer(1).timeout
+	
+		
+		
+		
+	state = MOVE
+	
+
+	
+	
+#Смена лимитов для камеры
+func state_camera():
+	velocity = lerp(velocity, Vector2.ZERO, 0.1)
+	anim.play("idle")
+	await  get_tree().create_timer(3).timeout
 	state = MOVE
 
-func state_window():
-	await  get_tree().create_timer(10000).timeout
-		
-#Смена лимитов для камеры
 func _change_camera(position, size):
+	state = CAMERA_MOVE
 	var viewport_size = get_viewport().get_visible_rect().size
 	var new_zoom = min(viewport_size.x / size.x, viewport_size.y / size.y)
 	var new_limits = {
