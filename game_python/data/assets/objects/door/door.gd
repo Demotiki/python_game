@@ -17,8 +17,10 @@ func _open():
 
 
 func test():
-	var ans = ["18\r\n"]
+	var ans = [str(Time.get_time_dict_from_system()["hour"]) + "\r\n"]
 	var output = []
+	
+	
 	
 	var cmd = "cmd.exe" if OS.get_name() == "Windows" else "sh"
 	var args = ["/C", "py", "test.py"] if OS.get_name() == "Windows" else ["-c", "py test.py"]

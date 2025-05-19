@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 
 var MOVE_SPEED = 200.0
+
+
+var FALL_BOOST = 10
 var gravity = 980.0
 
 
@@ -113,6 +116,8 @@ func state_fall(delta):
 	if direction == 1: anim.flip_h = 0
 	elif direction == -1: anim.flip_h = 1
 	
+	if Input.is_action_pressed("down"): velocity.y += FALL_BOOST
+	
 	
 	#Рывок
 	if Input.is_action_just_pressed("dash") and dash > 0: state = DASH
@@ -197,7 +202,7 @@ func state_grabing(delta):
 func state_camera():
 	velocity = lerp(velocity, Vector2.ZERO, 0.1)
 	anim.play("idle")
-	await  get_tree().create_timer(1.5).timeout
+	await  get_tree().create_timer(1.0).timeout
 	state = MOVE
 
 func _change_camera(position, size):

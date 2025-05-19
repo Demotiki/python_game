@@ -139,6 +139,7 @@ font_size = 105
 font_color = Color(0.607843, 0.6, 0.678431, 1)
 
 [node name="loading" type="CanvasLayer"]
+layer = 128
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(512, 350)

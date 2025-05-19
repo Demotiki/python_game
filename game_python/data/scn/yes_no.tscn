@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://7p5lu6a4vr8r"]
+
+[ext_resource type="Texture2D" uid="uid://be7srxlh3fkcq" path="res://data/assets/text/frame_for_text/frame.png" id="1_ud8l8"]
+[ext_resource type="FontFile" uid="uid://caa8xnnxs32kv" path="res://data/assets/text/fonts/alagard-12px-unicode (Rus)/alagard-12px-unicode.otf" id="2_1jbau"]
+[ext_resource type="LabelSettings" uid="uid://bxiucfqdqsh1f" path="res://data/assets/text/fonts/alagard-12px-unicode (Rus)/text_neon.tres" id="3_3wjkj"]
+
+[sub_resource type="GDScript" id="GDScript_w1rwc"]
+script/source = "extends CanvasLayer
+
+var voit = 0
+
+func _ready() -> void: 
+	visible = false
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+func _process(delta: float) -> void:
+	if visible == false: voit = 0
+	else: get_tree().paused = true
+		
+func _on_button_pressed() -> void:
+	voit = 1
+	visible = false
+	get_tree().paused = false
+func _on_button_2_pressed() -> void:
+	voit = -1
+	visible = false
+	get_tree().paused = false
+"
+
+[node name="YES_NO" type="CanvasLayer"]
+layer = 70
+script = SubResource("GDScript_w1rwc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(512, 350)
+scale = Vector2(6, 8.8)
+texture = ExtResource("1_ud8l8")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 277.0
+offset_top = 226.0
+offset_right = 394.0
+offset_bottom = 249.0
+scale = Vector2(3.84639, 3.70054)
+theme_override_fonts/font = ExtResource("2_1jbau")
+text = "Вы увереныы?"
+label_settings = ExtResource("3_3wjkj")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 185.0
+offset_top = 316.0
+offset_right = 216.0
+offset_bottom = 347.0
+scale = Vector2(8.33062, 3.9855)
+theme_override_fonts/font = ExtResource("2_1jbau")
+alignment = 0
+
+[node name="Label" type="Label" parent="Button"]
+offset_left = 4.08133
+offset_top = 3.76364
+offset_right = 44.0813
+offset_bottom = 26.7636
+scale = Vector2(0.966389, 0.929745)
+theme_override_fonts/font = ExtResource("2_1jbau")
+text = "ДА"
+label_settings = ExtResource("3_3wjkj")
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 556.0
+offset_top = 314.0
+offset_right = 587.0
+offset_bottom = 345.0
+scale = Vector2(8.33062, 3.9855)
+theme_override_fonts/font = ExtResource("2_1jbau")
+alignment = 0
+
+[node name="Label2" type="Label" parent="Button2"]
+offset_left = 2.04066
+offset_top = 4.26547
+offset_right = 42.0407
+offset_bottom = 27.2655
+scale = Vector2(0.803136, 0.959855)
+theme_override_fonts/font = ExtResource("2_1jbau")
+text = "НЕТ"
+label_settings = ExtResource("3_3wjkj")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

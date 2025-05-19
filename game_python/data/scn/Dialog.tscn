@@ -1,17 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqwqsg3hfnhhy"]
+[gd_scene load_steps=13 format=3 uid="uid://dqwqsg3hfnhhy"]
 
 [ext_resource type="Texture2D" uid="uid://be7srxlh3fkcq" path="res://data/assets/text/frame_for_text/frame.png" id="2_bnclw"]
+[ext_resource type="FontFile" uid="uid://caa8xnnxs32kv" path="res://data/assets/text/fonts/alagard-12px-unicode (Rus)/alagard-12px-unicode.otf" id="3_cwopy"]
 [ext_resource type="FontFile" uid="uid://0lr2tv6qa7cc" path="res://data/assets/text/code_editor/CascadiaMono.ttf" id="3_ris7t"]
 
 [sub_resource type="GDScript" id="GDScript_ns5p4"]
 script/source = "extends CanvasLayer
 
 
-@onready var text = $texts
-
+@onready var texts = $ScrollContainer/text
 
 func _ready() -> void:
-	pass
+	owner.connect(\"change_text\", Callable(self, \"text_swap\"))
+
+
+
+
+func text_swap(new_text, character):
+	texts.text = new_text
 "
 
 [sub_resource type="ImageTexture" id="ImageTexture_ifise"]
@@ -98,17 +104,17 @@ VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_66wj8")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_bkbc2")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_21q65")
 
-[sub_resource type="LabelSettings" id="LabelSettings_uyyp5"]
-paragraph_spacing = 4.0
-font = ExtResource("3_ris7t")
-font_size = 21
-outline_size = 2
-shadow_size = 4
-shadow_color = Color(0.355314, 0.355314, 0.355314, 0)
+[sub_resource type="LabelSettings" id="LabelSettings_bnclw"]
+font = ExtResource("3_cwopy")
+font_size = 27
+font_color = Color(0.305882, 0.815686, 0.560784, 1)
+outline_size = 1
+outline_color = Color(2.31028e-06, 0.971985, 0.686507, 1)
+shadow_color = Color(0, 0.321017, 0.356261, 1)
 
 [node name="Dialog" type="CanvasLayer"]
 physics_interpolation_mode = 2
-layer = -1
+layer = 18
 script = SubResource("GDScript_ns5p4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -117,11 +123,11 @@ scale = Vector2(7.70006, 5.72258)
 texture = ExtResource("2_bnclw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-offset_left = 59.0
-offset_top = 93.0
-offset_right = 967.0
-offset_bottom = 219.0
-scale = Vector2(0.99797, 0.974666)
+offset_left = 44.0
+offset_top = 83.0
+offset_right = 952.0
+offset_bottom = 209.0
+scale = Vector2(1.0273, 1.12948)
 theme = SubResource("Theme_4s5fb")
 horizontal_scroll_mode = 0
 
@@ -145,6 +151,6 @@ text = "Привет путник это начало этой замечате�
 д
 лдлд
 лд"
-label_settings = SubResource("LabelSettings_uyyp5")
+label_settings = SubResource("LabelSettings_bnclw")
 autowrap_mode = 3
 uppercase = true

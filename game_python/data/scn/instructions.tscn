@@ -6,17 +6,36 @@
 [sub_resource type="GDScript" id="GDScript_b5h4l"]
 script/source = "extends CanvasLayer
 
-func _ready() -> void:
-	visible = false
 
+@onready var instructions = $frame
+@onready var F1 = $F1
+
+func _ready() -> void:
+	instructions.visible = false
+	F1.visible = true
+	
+	
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed(\"instructions\"): visible = !visible
+	if Input.is_action_just_pressed(\"instructions\"): 
+		instructions.visible = !instructions.visible
+		F1.visible = !F1.visible
+
+
+	
 "
 
 [node name="instructions" type="CanvasLayer"]
-layer = 128
+layer = 60
 script = SubResource("GDScript_b5h4l")
+
+[node name="F1" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 9.0
+offset_right = 224.0
+offset_bottom = 32.0
+text = "F1 - показать управление"
+label_settings = ExtResource("2_q2aus")
 
 [node name="frame" type="Sprite2D" parent="."]
 position = Vector2(131, 180)
@@ -33,10 +52,10 @@ text = "Передвижение:
 W, A, S, D - Движение
 ALT - рывок
 SPACE - прыжок
-SHIFT - ухватиться
 
 Меню:
-ESC - ПАУЗА
+ESC - Выйти в меню
+F2  - Подсказка
 
 Редактор кода:
 R - Открыть редактор
