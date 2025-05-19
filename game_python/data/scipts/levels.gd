@@ -2,6 +2,10 @@ extends Node2D
 
 var inter = 0
 
+
+
+var inst_anaible = false
+
 func  _ready() -> void:
 	$loading.visible = 1
 	await get_tree().create_timer(3).timeout
@@ -9,9 +13,10 @@ func  _ready() -> void:
 
 func _process(delta: float) -> void:
 	var window_scene = load("res://data/scn/window_editor.tscn")
-	var window_instance = window_scene.instantiate()
+	
+	
 	if Input.is_action_just_pressed("redactor"):
-		get_tree().root.add_child(window_instance)
+		get_tree().root.add_child(window_scene.instantiate())
 		get_tree().paused = true
 		
 	if Input.is_action_just_pressed("esc"):

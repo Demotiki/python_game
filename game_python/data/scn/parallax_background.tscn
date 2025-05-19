@@ -20,7 +20,7 @@ script = SubResource("GDScript_0h003")
 
 [node name="ParallaxLayer7" type="ParallaxLayer" parent="."]
 scale = Vector2(16, 16)
-motion_scale = Vector2(4, 0.8)
+motion_scale = Vector2(0.01, 0.002)
 motion_mirroring = Vector2(641, 201)
 
 [node name="sky" type="Sprite2D" parent="ParallaxLayer7"]

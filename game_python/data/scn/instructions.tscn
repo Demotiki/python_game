@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwxjovkmt7qn4"]
+
+[ext_resource type="Texture2D" uid="uid://deqcno74ofduc" path="res://data/assets/controls/frame_instructions.png" id="1_b5h4l"]
+[ext_resource type="LabelSettings" uid="uid://bxiucfqdqsh1f" path="res://data/assets/text/fonts/alagard-12px-unicode (Rus)/text_neon.tres" id="2_q2aus"]
+
+[sub_resource type="GDScript" id="GDScript_b5h4l"]
+script/source = "extends CanvasLayer
+
+func _ready() -> void:
+	visible = false
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"instructions\"): visible = !visible
+"
+
+[node name="instructions" type="CanvasLayer"]
+layer = 128
+script = SubResource("GDScript_b5h4l")
+
+[node name="frame" type="Sprite2D" parent="."]
+position = Vector2(131, 180)
+scale = Vector2(0.485898, 0.565901)
+texture = ExtResource("1_b5h4l")
+
+[node name="text" type="Label" parent="frame"]
+offset_left = -230.501
+offset_top = -288.036
+offset_right = -30.501
+offset_bottom = 33.9635
+scale = Vector2(2.24156, 1.75397)
+text = "Передвижение:
+W, A, S, D - Движение
+ALT - рывок
+SPACE - прыжок
+SHIFT - ухватиться
+
+Меню:
+ESC - ПАУЗА
+
+Редактор кода:
+R - Открыть редактор
+E - Отправить скрипт
+ESC - закрыт редактор"
+label_settings = ExtResource("2_q2aus")

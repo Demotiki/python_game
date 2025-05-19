@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bxiucfqdqsh1f"]
+
+[ext_resource type="FontFile" uid="uid://caa8xnnxs32kv" path="res://data/assets/text/fonts/alagard-12px-unicode (Rus)/alagard-12px-unicode.otf" id="1_4p3o2"]
+
+[resource]
+font = ExtResource("1_4p3o2")
+font_color = Color(0.305882, 0.815686, 0.560784, 1)
+outline_size = 1
+outline_color = Color(2.31028e-06, 0.971985, 0.686507, 1)
+shadow_color = Color(0, 0.321017, 0.356261, 1)
