@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	
 	if $screen_maps/screen_map.zone: zones = 1
 	if $screen_maps/screen_map2.zone: zones = 2
-	
+	if $screen_maps/screen_map3.zone: zones = 3
 	
 	var window_scene = load("res://data/scn/window_editor.tscn")
 	
@@ -39,6 +39,6 @@ func _process(delta: float) -> void:
 		if zones == 1:
 			text = "Здравствуй путник, что не можешь выйти, дам подсказку, нужно использовть print(пароль),\
 			 чтобы вывести в консоль пароль(P.S Который час?)"
-		elif zones == 2:
-			text = ""
+		elif zones == 2 or zones == 3:
+			text = "Дальше только тестовый геймплей"
 		emit_signal("change_text", text, character)

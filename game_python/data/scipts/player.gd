@@ -75,7 +75,6 @@ func _physics_process(delta: float) -> void:
 		JUMP: state_jump(delta)
 		DASH: state_dash(delta)
 		GRABING: state_grabing(delta)
-		CAMERA_MOVE: state_camera()
 		FALL: state_fall(delta)
 	
 	if buffer_jump_can and is_on_floor(): state = JUMP
@@ -199,14 +198,10 @@ func state_grabing(delta):
 	
 	
 #Смена лимитов для камеры
-func state_camera():
-	velocity = lerp(velocity, Vector2.ZERO, 0.1)
-	anim.play("idle")
-	await  get_tree().create_timer(1.0).timeout
-	state = MOVE
+
+	
 
 func _change_camera(position, size):
-	state = CAMERA_MOVE
 	var viewport_size = get_viewport().get_visible_rect().size
 	var new_zoom = min(viewport_size.x / size.x, viewport_size.y / size.y)
 	var new_limits = {
@@ -216,14 +211,13 @@ func _change_camera(position, size):
 		"limit_bottom": position.y + size.y,
 		"zoom": Vector2(new_zoom, new_zoom)
 		}
-	fade(true)
+
 	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.set_parallel(true)
-	
 	for property in new_limits:
 		tween.tween_property(camera, property, new_limits[property], 0.5)
 	await tween.finished
-	fade(false)
+
 
 	
 #Затемнение

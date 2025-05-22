@@ -37,13 +37,13 @@ scale = Vector2(6, 8.8)
 texture = ExtResource("1_ud8l8")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 277.0
-offset_top = 226.0
-offset_right = 394.0
-offset_bottom = 249.0
+offset_left = 301.0
+offset_top = 227.0
+offset_right = 418.0
+offset_bottom = 250.0
 scale = Vector2(3.84639, 3.70054)
 theme_override_fonts/font = ExtResource("2_1jbau")
-text = "Вы увереныы?"
+text = "Вы уверены?"
 label_settings = ExtResource("3_3wjkj")
 
 [node name="Button" type="Button" parent="."]
@@ -56,11 +56,11 @@ theme_override_fonts/font = ExtResource("2_1jbau")
 alignment = 0
 
 [node name="Label" type="Label" parent="Button"]
-offset_left = 4.08133
-offset_top = 3.76364
-offset_right = 44.0813
-offset_bottom = 26.7636
-scale = Vector2(0.966389, 0.929745)
+offset_left = 5.64183
+offset_top = 2.76
+offset_right = 46.6418
+offset_bottom = 26.76
+scale = Vector2(0.847536, 0.973837)
 theme_override_fonts/font = ExtResource("2_1jbau")
 text = "ДА"
 label_settings = ExtResource("3_3wjkj")
@@ -75,11 +75,11 @@ theme_override_fonts/font = ExtResource("2_1jbau")
 alignment = 0
 
 [node name="Label2" type="Label" parent="Button2"]
-offset_left = 2.04066
-offset_top = 4.26547
-offset_right = 42.0407
-offset_bottom = 27.2655
-scale = Vector2(0.803136, 0.959855)
+offset_left = 1.56051
+offset_top = 3.76365
+offset_right = 42.5605
+offset_bottom = 27.7636
+scale = Vector2(0.847536, 0.973837)
 theme_override_fonts/font = ExtResource("2_1jbau")
 text = "НЕТ"
 label_settings = ExtResource("3_3wjkj")
